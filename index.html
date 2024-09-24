@@ -7,16 +7,44 @@
     <title>3DDrucker</title>
     <style>
         .background {
-            background-color: #f0f0f0; /* Beispiel Hintergrundfarbe */
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        video {
+            display: block;
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 16px;
         }
     </style>
 </head>
 
 <body class="background">
 
-    <video controls src="vid/video.mp4" width="300">
+    <label for="videoSelection">Wähle ein Video aus:</label>
+    <select id="videoSelection" onchange="changeVideo()">
+        <option value="vid/video1.mp4">Video 1</option>
+        <option value="vid/video2.mp4">Video 2</option>
+    </select>
+
+    <video id="videoPlayer" controls width="400">
+        <source src="vid/video1.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <script>
+        function changeVideo() {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const selectedVideo = document.getElementById('videoSelection').value;
+            videoPlayer.src = selectedVideo;
+            videoPlayer.load();
+            videoPlayer.play();  // Optional: Das Video automatisch abspielen
+        }
+    </script>
 
 </body>
 
