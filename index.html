@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3DDrucker</title>
+    <title>3D Drucker Videoauswahl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        .background {
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+        /* Allgemeine Stile */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            text-align: center;
             padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            border-radius: 8px;
+            max-width: 700px;
+            width: 100%;
+            margin: 20px;
+        }
+
+        label {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        select {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:hover {
+            border-color: #333;
         }
 
         .video-container {
             position: relative;
             width: 100%;
-            max-width: 640px; /* Maximale Breite des Videos */
-            padding-top: 56.25%; /* 16:9-Verhältnis (9/16 = 0.5625 = 56.25%) */
+            max-width: 100%;
+            padding-top: 56.25%; /* 16:9-Verhältnis */
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         video {
@@ -25,27 +75,43 @@
             left: 0;
             width: 100%;
             height: 100%;
+            border-radius: 8px;
         }
 
-        label {
-            font-size: 16px;
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 
-<body class="background">
+<body>
+    <div class="container">
+        <h1>3D Drucker Minimonster</h1>
 
-    <label for="videoSelection">Wähle eine Sprache:</label>
-    <select id="videoSelection" onchange="changeVideo()">
-        <option value="vid/deutsch.mp4">Deutsch</option>
-        <option value="vid/englisch.mp4">Englisch</option>
-    </select>
+        <label for="videoSelection">Wähle eine Sprache:</label>
+        <br>
+        <select id="videoSelection" onchange="changeVideo()">
+            <option value="vid/deutsch.mp4">Deutsch</option>
+            <option value="vid/englisch.mp4">Englisch</option>
+        </select>
 
-    <div class="video-container">
-        <video id="videoPlayer" controls>
-            <source src="vid/deutsch.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <div class="video-container fade-in">
+            <video id="videoPlayer" controls>
+                <source src="vid/deutsch.mp4" type="video/mp4">
+                Dein Browser unterstützt das Video-Tag nicht.
+            </video>
+        </div>
     </div>
 
     <script>
@@ -54,10 +120,10 @@
             const selectedVideo = document.getElementById('videoSelection').value;
             videoPlayer.src = selectedVideo;
             videoPlayer.load();
-            videoPlayer.play();  // Optional: Das Video automatisch abspielen
+            videoPlayer.play();
         }
     </script>
-
 </body>
 
 </html>
+
