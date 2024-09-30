@@ -15,7 +15,7 @@
             color: #333;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             min-height: 100vh;
         }
@@ -24,7 +24,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
         .logo {
@@ -34,7 +34,7 @@
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #333;
             text-align: center;
         }
@@ -47,7 +47,7 @@
             border-radius: 8px;
             max-width: 700px;
             width: 100%;
-            margin: 20px;
+            margin-bottom: 20px;
         }
 
         label {
@@ -72,12 +72,14 @@
 
         .video-container {
             position: relative;
-            width: 640px;
-            height: 360px;
+            width: 100%;
+            max-width: 640px;
+            height: auto;
             margin-top: 20px;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            aspect-ratio: 16 / 9;
         }
 
         video {
@@ -100,17 +102,65 @@
                 opacity: 1;
             }
         }
+
+        /* Mobile Optimierung */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                width: 80px;
+                margin-right: 10px;
+            }
+
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+
+            select {
+                width: 100%;
+                padding: 8px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            .logo {
+                width: 70px;
+                margin-right: 5px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            select {
+                width: 100%;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Positionierung am unteren Bildschirmrand */
+        .footer {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
 <body>
     <div class="header">
         <!-- Platzhalter für das Logo -->
-        <img src="https://github.com/minimonster0815/3ddr-ckererkl-rung/blob/main/vid/logo.jpg" alt="Firmenlogo" class="logo">
+        <img src="jpg/logo.jpg" alt="Firmenlogo" class="logo">
         <h1>3D Drucker Minimonster</h1>
     </div>
 
-    <div class="container">
+    <div class="container footer">
         <label for="videoSelection">Wähle eine Sprache:</label>
         <br>
         <select id="videoSelection" onchange="changeVideo()">
