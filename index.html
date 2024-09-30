@@ -20,11 +20,23 @@
             min-height: 100vh;
         }
 
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
         h1 {
             font-size: 2.5rem;
             color: #333;
             text-align: center;
-            margin-bottom: 20px;
         }
 
         .container {
@@ -60,9 +72,8 @@
 
         .video-container {
             position: relative;
-            width: 100%;
-            max-width: 100%;
-            padding-top: 56.25%; /* 16:9-Verhältnis */
+            width: 640px;
+            height: 360px;
             margin-top: 20px;
             border-radius: 8px;
             overflow: hidden;
@@ -70,9 +81,6 @@
         }
 
         video {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             border-radius: 8px;
@@ -96,9 +104,13 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="header">
+        <!-- Platzhalter für das Logo -->
+        <img src="https://via.placeholder.com/100x50.png?text=Logo" alt="Firmenlogo" class="logo">
         <h1>3D Drucker Minimonster</h1>
+    </div>
 
+    <div class="container">
         <label for="videoSelection">Wähle eine Sprache:</label>
         <br>
         <select id="videoSelection" onchange="changeVideo()">
@@ -107,7 +119,7 @@
         </select>
 
         <div class="video-container fade-in">
-            <video id="videoPlayer" controls>
+            <video id="videoPlayer" controls preload="metadata">
                 <source src="vid/deutsch.mp4" type="video/mp4">
                 Dein Browser unterstützt das Video-Tag nicht.
             </video>
@@ -116,14 +128,18 @@
 
     <script>
         function changeVideo() {
-            const videoPlayer = document.getElementById('videoPlayer');
-            const selectedVideo = document.getElementById('videoSelection').value;
-            videoPlayer.src = selectedVideo;
-            videoPlayer.load();
-            videoPlayer.play();
+            const videoContainer = document.querySelector('.video-container');
+            videoContainer.classList.remove('fade-in');
+            setTimeout(() => {
+                const videoPlayer = document.getElementById('videoPlayer');
+                const selectedVideo = document.getElementById('videoSelection').value;
+                videoPlayer.src = selectedVideo;
+                videoPlayer.load();
+                videoPlayer.play();
+                videoContainer.classList.add('fade-in');
+            }, 300); // Adjust timing to match animation duration
         }
     </script>
 </body>
 
 </html>
-
